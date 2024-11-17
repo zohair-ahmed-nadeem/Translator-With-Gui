@@ -6,10 +6,4 @@ def trans(f_l,t_l,text):
 
     translated_text = translator.translate(text)
 
-    #
-    # print(f"Original text: {text}")
-    # print(f"Translated text: {translated_text}")
     return translated_text
-
-
-# trans("en","ur","reminder")
