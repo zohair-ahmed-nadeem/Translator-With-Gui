@@ -144,7 +144,7 @@ ip_e = tk.Entry(root,textvariable=text_var,font=("Arial",14))
 ip_e.grid(row=1,column=2)
 
 tl_combo = ttk.Combobox(root, values=list(lang_dict.keys()))
-tl_combo.grid(row=1,column=3)
+tl_combo.grid(row=1,column=3,padx=15)
 
 translate_btn = tk.Button(root,text="Translate",command=enter)
 translate_btn.grid(row=2,column=1)
