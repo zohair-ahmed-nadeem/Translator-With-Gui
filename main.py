@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, PhotoImage
 from _trans_ import trans
 import pyperclip
 
@@ -129,8 +129,10 @@ def copy():
     pyperclip.copy(translated)
 root = tk.Tk()
 root.geometry("650x400")
+root.resizable(False,False)
 root.title("Translator By ZAN")
-
+logo = PhotoImage(file='translator_icon.png')
+root.iconphoto(False, logo)
 
 
 head = tk.Label(root,text="Translator...",font=("Arial",20))
