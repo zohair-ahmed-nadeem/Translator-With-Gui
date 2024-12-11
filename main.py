@@ -1,5 +1,4 @@
-import tkinter as tk
-from tkinter import ttk, PhotoImage
+import customtkinter as ctk
 from _trans_ import trans
 import pyperclip
 
@@ -114,48 +113,48 @@ lang_dict = {
     "Yoruba": "yo",
     "Zulu": "zu"
 }
+
 def enter():
     global tl
     global translated
     lang = tl_combo.get()
     tl = lang_dict.get(lang)
     text = text_var.get()
-    # t_l = tl_combo.get()
     translated = trans("autodetect", tl, text)
     f_result.set(translated)
 
-
 def copy():
     pyperclip.copy(translated)
-root = tk.Tk()
+
+ctk.set_appearance_mode("System")  # Modes: "System" (default), "Dark", "Light"
+ctk.set_default_color_theme("blue")  # Themes: "blue" (default), "green", "dark-blue"
+
+root = ctk.CTk()
 root.geometry("650x400")
-root.resizable(False,False)
+root.resizable(False, False)
 root.title("Translator By ZAN")
-logo = PhotoImage(file='translator_icon.png')
-root.iconphoto(False, logo)
 
+head = ctk.CTkLabel(root, text="Translator...", font=("Arial", 20))
+head.grid(row=0, column=1, padx=5, pady=5)
 
-head = tk.Label(root,text="Translator...",font=("Arial",20))
-head.grid(row=0,column=1,padx=5,pady=5)
+ip_l = ctk.CTkLabel(root, text="Enter Text:", font=("Arial", 14))
+ip_l.grid(row=1, column=1, pady=10)
 
-ip_l = tk.Label(root,text="Enter Text:",font=("Arial",14))
-ip_l.grid(row=1,column=1,pady=10)
+text_var = ctk.StringVar()
+ip_e = ctk.CTkEntry(root, textvariable=text_var, font=("Arial", 14))
+ip_e.grid(row=1, column=2)
 
-text_var = tk.StringVar()
-ip_e = tk.Entry(root,textvariable=text_var,font=("Arial",14))
-ip_e.grid(row=1,column=2)
+tl_combo = ctk.CTkComboBox(root, values=list(lang_dict.keys()))
+tl_combo.grid(row=1, column=3, padx=15)
 
-tl_combo = ttk.Combobox(root, values=list(lang_dict.keys()))
-tl_combo.grid(row=1,column=3,padx=15)
+translate_btn = ctk.CTkButton(root, text="Translate", command=enter)
+translate_btn.grid(row=2, column=2)
 
-translate_btn = tk.Button(root,text="Translate",command=enter)
-translate_btn.grid(row=2,column=1)
+f_result = ctk.StringVar()
+result = ctk.CTkLabel(root, textvariable=f_result, font=("Arial", 14))
+result.grid(row=3, column=1, pady=20)
 
-f_result = tk.StringVar()
-result = tk.Label(root,textvariable=f_result)
-result.grid(row=3,column=1, pady=20)
-
-copy_btn = tk.Button(root,text="copied to clipboard!",command=copy)
-copy_btn.grid(row=4,column=2)
+copy_btn = ctk.CTkButton(root, text="Copy to clipboard!", command=copy)
+copy_btn.grid(row=4, column=2)
 
 root.mainloop()
