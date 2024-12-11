@@ -1,6 +1,7 @@
 import customtkinter as ctk
 from _trans_ import trans
 import pyperclip
+from PIL import Image, ImageTk
 
 lang_dict = {
     "Afrikaans": "af",
@@ -127,12 +128,17 @@ def copy():
     pyperclip.copy(translated)
 
 ctk.set_appearance_mode("System")  # Modes: "System" (default), "Dark", "Light"
-ctk.set_default_color_theme("blue")  # Themes: "blue" (default), "green", "dark-blue"
+ctk.set_default_color_theme("blue")  # Themes: "blue" (default), "green", "dark-blue")
 
 root = ctk.CTk()
 root.geometry("650x400")
 root.resizable(False, False)
 root.title("Translator By ZAN")
+
+# Load the image using PIL and convert it to PhotoImage
+image = Image.open('translator_icon.png')
+logo = ImageTk.PhotoImage(image)
+root.iconphoto(False, logo)
 
 head = ctk.CTkLabel(root, text="Translator...", font=("Arial", 20))
 head.grid(row=0, column=1, padx=5, pady=5)
@@ -148,7 +154,7 @@ tl_combo = ctk.CTkComboBox(root, values=list(lang_dict.keys()))
 tl_combo.grid(row=1, column=3, padx=15)
 
 translate_btn = ctk.CTkButton(root, text="Translate", command=enter)
-translate_btn.grid(row=2, column=2)
+translate_btn.grid(row=2, column=1)
 
 f_result = ctk.StringVar()
 result = ctk.CTkLabel(root, textvariable=f_result, font=("Arial", 14))
